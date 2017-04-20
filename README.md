@@ -25,7 +25,7 @@ and handles a few extra bits required to make the Instant Client work.
 
 #### `version`
 Specify the version of Oracle Instant Client to install. This **must** match the packages you have
-downloaded from Oracle and placed in a local Yum repo. Default: `12.1`
+downloaded from Oracle and placed in a local Yum repo. Default: `12.2`
 
 #### `devel`
 Install the development package. Default: `false`
