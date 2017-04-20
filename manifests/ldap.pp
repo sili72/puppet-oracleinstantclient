@@ -5,6 +5,11 @@ class oracleinstantclient::ldap (
   Integer $ldapport = 389,
   String $ldaptype = 'OID',
 ) {
+
+  package { 'openldap-clients':
+    ensure => installed,
+  {
+
   file { 'ldap.ora':
     name    => "/usr/lib/oracle/${::oracle_version}/${::oracleinstantclient::oracleclient}/ldap.ora",
     mode    => '0644',

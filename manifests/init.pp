@@ -1,14 +1,45 @@
 # Installs and configures Oracle Instant Client
-class oracleinstantclient {
-  # Install the basic yum packages
-  package { [
-    'openldap-clients',
-    'oracle-instantclient',
-    'perl-DBD-Oracle',
-    'libaio',
-  ]:
+class oracleinstantclient (
+  String $version = '12.2',
+  Boolean $devel = false,
+  Boolean $jdbc = false,
+  Boolean $odbc = false,
+  Boolean $sqlplus = false,
+  Boolean $tools = false,
+) {
+  # Install the basic yum package
+  package { "oracle-instantclient${version}-basic":
     ensure  => installed,
-    require => Yumrepo['resnet'],
+  }
+
+  if ($devel) {
+    package { "oracle-instantclient${version}-devel":
+      ensure => installed,
+    }
+  }
+
+  if ($jdbc) {
+    package { "oracle-instantclient${version}-jdbc":
+      ensure => installed,
+    }
+  }
+
+  if ($odbc) {
+    package { "oracle-instantclient${version}-odbc":
+      ensure => installed,
+    }
+  }
+
+  if ($sqlplus) {
+    package { "oracle-instantclient${version}-sqlplus":
+      ensure => installed,
+    }
+  }
+
+  if ($tools) {
+    package { "oracle-instantclient${version}-tools":
+      ensure => installed,
+    }
   }
 
   # The oracle client has a different path depending on architecture
@@ -26,7 +57,7 @@ class oracleinstantclient {
     group   => 'root',
     source  => 'puppet:///modules/oracleinstantclient/oracle.conf',
     require => [
-      Package['oracle-instantclient'],
+      Package["oracle-instantclient${version}-basic"],
       File['/usr/lib/oracle/current'],
     ],
     notify  => Exec['ldlibcfg'],
@@ -39,7 +70,7 @@ class oracleinstantclient {
     group   => 'root',
     source  => 'puppet:///modules/oracleinstantclient/oracle_env.sh',
     require => [
-      Package['oracle-instantclient'],
+      Package["oracle-instantclient${version}-basic"],
       File['/usr/lib/oracle/current'],
     ],
   }
@@ -51,7 +82,7 @@ class oracleinstantclient {
     group   => 'root',
     source  => 'puppet:///modules/oracleinstantclient/oracle_env.csh',
     require => [
-      Package['oracle-instantclient'],
+      Package["oracle-instantclient${version}-basic"],
       File['/usr/lib/oracle/current'],
     ],
   }
@@ -63,7 +94,7 @@ class oracleinstantclient {
     group   => 'root',
     source  => 'puppet:///modules/oracleinstantclient/eplan.sql',
     require => [
-      Package['oracle-instantclient'],
+      Package["oracle-instantclient${version}-basic"],
       File['/usr/lib/oracle/current'],
     ],
   }
@@ -72,7 +103,7 @@ class oracleinstantclient {
   file { '/usr/lib/oracle/current':
     ensure  => link,
     target  => "/usr/lib/oracle/${::oracle_version}",
-    require => Package['oracle-instantclient'],
+    require => Package["oracle-instantclient${version}-basic"],
     notify  => Exec['ldlibcfg'],
   }
 
@@ -80,13 +111,13 @@ class oracleinstantclient {
     file { '/usr/bin/sqlplus':
       ensure  => link,
       target  => '/usr/bin/sqlplus64',
-      require => Package['oracle-instantclient'],
+      require => Package["oracle-instantclient${version}-basic"],
       notify  => Exec['ldlibcfg'],
     }
     file { '/usr/lib/oracle/current/client':
       ensure  => link,
       target  => '/usr/lib/oracle/current/client64',
-      require => Package['oracle-instantclient'],
+      require => Package["oracle-instantclient${version}-basic"],
       notify  => Exec['ldlibcfg'],
     }
   }
