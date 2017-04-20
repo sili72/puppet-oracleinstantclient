@@ -6,6 +6,7 @@ class oracleinstantclient (
   Boolean $odbc = false,
   Boolean $sqlplus = false,
   Boolean $tools = false,
+  Boolean $selinux = true,
 ) {
   # Install the basic yum package
   package { "oracle-instantclient${version}-basic":
@@ -129,7 +130,7 @@ class oracleinstantclient (
   }
 
   # SELinux config
-  if $::osfamily == 'RedHat' {
+  if ($selinux == true and $::osfamily == 'RedHat') {
     selinux::module { 'oracle':
       ensure => 'present',
       source => 'puppet:///modules/oracleinstantclient/oracle.te',
