@@ -64,6 +64,65 @@ class { oracleinstantclient:
 }
 ```
 
+### `oracleinstantclient::ldap`
+
+The `oracleinstantclient::ldap` class allows you to configure Oracle Instant Client
+to use LDAP to look up Oracle server names.
+
+#### `ldapserver`
+The name of the LDAP server to use. This is a required parameter. Example: `ldap.example.com`
+
+#### `ldapcontext`
+The LDAP context to run in. This is a required parameter. Example: `dc=example,dc=com`
+
+#### `ldapport`
+The port to connect to the LDAP server on. Default: `389`
+
+#### `ldaptype`
+The type of LDAP search to run. Default: `OID`
+
+#### Example
+```puppet
+class { oracleinstantclient::ldap:
+  ldapserver  => 'ldap.example.com',
+  ldapcontext => 'dc=example,dc=com',
+  ldapport    => 389,
+  ldaptype    => 'OID',
+}
+```
+
+### `oracleinstantclient::sqlnet`
+
+The `oracleinstantclient::sqlnet` class allows you to configure Oracle Instant Client
+to use SQLNet to locate Oracle servers
+
+#### `sqlnetdomain`
+The default domain of your Oracle server. Example: `example.com`
+
+#### `sqlnetdirectory`
+The preference order of which directories to use to locate your Oracle server. Default `(LDAP,TNSNAMES)`
+
+#### `sqlnetseed`
+The seed to use for crypto purposes. Example: `SECRETSEED`
+
+#### `sqlnetzone`
+The default zone of your Oracle server. Default: `world`
+
+#### `sqlnetexpire`
+SQLNet expire time. Default: `50`
+
+#### Example
+
+```puppet
+class { oracleinstantclient::sqlnet:
+  sqlnetdomain    => 'example.com',
+  sqlnetdirectory => '(LDAP,TNSNAMES)',
+  sqlnetseed      => 'SECRETSEED',
+  sqlnetzone      => 'world',
+  sqlnetexpire    => 50,
+}
+```
+
 ## Limitations
 
 This is where you list OS compatibility, version compatibility, etc.
