@@ -7,6 +7,7 @@ class oracleinstantclient (
   Boolean $sqlplus = false,
   Boolean $tools = false,
   Boolean $selinux = true,
+  Boolean $eplan = false,
 ) {
   # Install the basic yum package
   package { "oracle-instantclient${version}-basic":
@@ -88,16 +89,18 @@ class oracleinstantclient (
     ],
   }
 
-  file { 'eplan.sql':
-    name    => "/usr/lib/oracle/${::oracle_version}/${oracleclient}/eplan.sql",
-    mode    => '0644',
-    owner   => 'root',
-    group   => 'root',
-    source  => 'puppet:///modules/oracleinstantclient/eplan.sql',
-    require => [
-      Package["oracle-instantclient${version}-basic"],
-      File['/usr/lib/oracle/current'],
-    ],
+  if ($eplan) {
+    file { 'eplan.sql':
+      name    => "/usr/lib/oracle/${::oracle_version}/${oracleclient}/eplan.sql",
+      mode    => '0644',
+      owner   => 'root',
+      group   => 'root',
+      source  => 'puppet:///modules/oracleinstantclient/eplan.sql',
+      require => [
+        Package["oracle-instantclient${version}-basic"],
+        File['/usr/lib/oracle/current'],
+      ],
+    }
   }
 
   # Make the symlink to current versions

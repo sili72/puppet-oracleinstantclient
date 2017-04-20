@@ -45,6 +45,9 @@ Install the tools package. Default: `false`
 #### `selinux`
 Manage SELinux policies to allow Oracle Instant Client to work on RHEL. Default: `true`
 
+#### `eplan`
+Install `eplan` SQL script to enable `explain plan` usage in SQLPlus. Default: `false`
+
 #### Example
 This example shows all parameters with their default values.
 
@@ -57,6 +60,7 @@ class { oracleinstantclient:
   sqlplus => false,
   tools   => false,
   selinux => true,
+  eplan   => false,
 }
 ```
 
