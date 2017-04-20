@@ -56,7 +56,7 @@ class oracleinstantclient (
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
-    source  => 'puppet:///modules/oracleinstantclient/oracle.conf',
+    content => '/usr/lib/oracle/current/client/lib',
     require => [
       Package["oracle-instantclient${version}-basic"],
       File['/usr/lib/oracle/current'],
