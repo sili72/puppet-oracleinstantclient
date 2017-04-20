@@ -2,13 +2,30 @@
   "name": "jgazeley/oracleinstantclient",
   "version": "0.1.0",
   "author": "jgazeley",
-  "summary": "Puppet module to install Oracle Instant Client",
+  "summary": "Install Oracle Instant Client",
   "license": "Apache-2.0",
   "source": "https://github.com/djjudas21/puppet-oracleinstantclient",
   "project_page": "https://github.com/djjudas21/puppet-oracleinstantclient",
   "issues_url": "https://github.com/djjudas21/puppet-oracleinstantclient/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {
+      "name":"jfryman/selinux",
+      "version_requirement":">= 0.2.3"
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    }
   ]
 }
-
