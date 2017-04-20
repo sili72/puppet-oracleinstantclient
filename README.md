@@ -4,7 +4,6 @@
 
 1. [Overview](#overview)
 4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
@@ -19,15 +18,47 @@ and place them in a Yum repo which is accessible by your system.
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+### `oracleinstantclient`
 
-## Reference
+The main usage of this module is via the `oracleinstantclient` class, which installs packages
+and handles a few extra bits required to make the Instant Client work.
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+#### `version`
+Specify the version of Oracle Instant Client to install. This **must** match the packages you have
+downloaded from Oracle and placed in a local Yum repo. Default: `12.1`
+
+#### `devel`
+Install the development package. Default: `false`
+
+#### `jdbc`
+Install the JDBC package. Default: `false`
+
+#### `odbc`
+Install the ODBC package. Default: `false`
+
+#### `sqlplus`
+Install the SQLPlus application package. Default: `false`
+
+#### `tools`
+Install the tools package. Default: `false`
+
+#### `selinux`
+Manage SELinux policies to allow Oracle Instant Client to work on RHEL. Default: `true`
+
+#### Example
+This example shows all parameters with their default values.
+
+```puppet
+class { oracleinstantclient:
+  version => '12.2',
+  devel   => false,
+  jdbc    => false,
+  odbc    => false,
+  sqlplus => false,
+  tools   => false,
+  selinux => true,
+}
+```
 
 ## Limitations
 
