@@ -138,21 +138,5 @@ class oracleinstantclient (
       ensure => 'present',
       source => 'puppet:///modules/oracleinstantclient/oracle.te',
     }
-
-    selboolean { 'httpd_can_network_connect':
-      name       => 'httpd_can_network_connect',
-      persistent => true,
-      value      => on,
-    }
-    selboolean { 'httpd_execmem':
-      name       => 'httpd_execmem',
-      persistent => true,
-      value      => on,
-    }
-    selboolean { 'httpd_enable_homedirs':
-      name       => 'httpd_enable_homedirs',
-      persistent => true,
-      value      => on,
-    }
   }
 }
