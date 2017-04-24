@@ -8,7 +8,7 @@ class oracleinstantclient::ldap (
 
   package { 'openldap-clients':
     ensure => installed,
-  {
+  }
 
   file { 'ldap.ora':
     name    => "/usr/lib/oracle/${::oracle_version}/${::oracleinstantclient::oracleclient}/ldap.ora",
