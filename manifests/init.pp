@@ -115,7 +115,7 @@ class oracleinstantclient (
     file { '/usr/bin/sqlplus':
       ensure  => link,
       target  => '/usr/bin/sqlplus64',
-      require => Package["oracle-instantclient${version}-basic"],
+      require => Package["oracle-instantclient${version}-sqlplus"],
       notify  => Exec['ldlibcfg'],
     }
     file { '/usr/lib/oracle/current/client':
