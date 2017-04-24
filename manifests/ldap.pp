@@ -11,7 +11,7 @@ class oracleinstantclient::ldap (
   }
 
   file { 'ldap.ora':
-    name    => "/usr/lib/oracle/${::oracle_version}/${::oracleinstantclient::oracleclient}/ldap.ora",
+    name    => "/usr/lib/oracle/current/${::oracleinstantclient::oracleclient}/ldap.ora",
     mode    => '0644',
     owner   => 'root',
     group   => 'root',

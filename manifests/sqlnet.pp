@@ -7,7 +7,7 @@ class oracleinstantclient::sqlnet (
   Integer $sqlnetexpire = 50,
 ) {
   file { 'sqlnet.ora':
-    name    => "/usr/lib/oracle/${::oracle_version}/${::oracleinstantclient::oracleclient}/sqlnet.ora",
+    name    => "/usr/lib/oracle/current/${::oracleinstantclient::oracleclient}/sqlnet.ora",
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
