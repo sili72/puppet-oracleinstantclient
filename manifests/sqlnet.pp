@@ -1,3 +1,4 @@
+# Install SQL*Net config via sqlnet.ora
 class oracleinstantclient::sqlnet (
   String $sqlnetdomain,
   String $sqlnetdirectory,
