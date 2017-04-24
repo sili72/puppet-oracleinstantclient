@@ -13,7 +13,7 @@ class oracleinstantclient::sqlnet (
     group   => 'root',
     content => template('oracleinstantclient/sqlnet.ora.erb'),
     require => [
-      Package['oracle-instantclient'],
+      Package["oracle-instantclient${oracleinstantclient::version}-basic"],
       File['/usr/lib/oracle/current'],
     ],
   }

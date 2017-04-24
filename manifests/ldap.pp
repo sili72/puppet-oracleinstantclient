@@ -17,7 +17,7 @@ class oracleinstantclient::ldap (
     group   => 'root',
     content => template('oracleinstantclient/ldap.ora.erb'),
     require => [
-      Package['oracle-instantclient'],
+      Package["oracle-instantclient${oracleinstantclient::version}-basic"],
       File['/usr/lib/oracle/current'],
     ],
   }
