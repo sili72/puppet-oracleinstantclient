@@ -91,7 +91,7 @@ class oracleinstantclient (
 
   if ($eplan) {
     file { 'eplan.sql':
-      name    => "/usr/lib/oracle/${::oracle_version}/${oracleclient}/eplan.sql",
+      name    => "/usr/lib/oracle/${version}/${oracleclient}/eplan.sql",
       mode    => '0644',
       owner   => 'root',
       group   => 'root',
@@ -106,7 +106,7 @@ class oracleinstantclient (
   # Make the symlink to current versions
   file { '/usr/lib/oracle/current':
     ensure  => link,
-    target  => "/usr/lib/oracle/${::oracle_version}",
+    target  => "/usr/lib/oracle/${version}",
     require => Package["oracle-instantclient${version}-basic"],
     notify  => Exec['ldlibcfg'],
   }
