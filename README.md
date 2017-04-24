@@ -100,7 +100,7 @@ to use SQLNet to locate Oracle servers
 The default domain of your Oracle server. Example: `example.com`
 
 #### `sqlnetdirectory`
-The preference order of which directories to use to locate your Oracle server. Default `(LDAP,TNSNAMES)`
+The preference order of which directories to use to locate your Oracle server. Example: `(LDAP,TNSNAMES)`
 
 #### `sqlnetseed`
 The seed to use for crypto purposes. Example: `SECRETSEED`
