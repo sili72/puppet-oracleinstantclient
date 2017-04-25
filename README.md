@@ -3,18 +3,22 @@
 #### Table of Contents
 
 1. [Overview](#overview)
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+2. [Usage - Configuration options and additional functionality](#usage)
+3. [Limitations - OS compatibility, etc.](#limitations)
+4. [Development - Guide for contributing to the module](#development)
+5. [Release Notes](#releasenotes)
 
 ## Overview
 
 This module installs the Oracle Instant Client, plus related tools, libraries
 and SDKs.
 
-This module does **not** include the Oracle binary packages. You must [download
+This module does **not** include the Oracle RPM binary packages. You must [download
 these from Oracle's website](http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)
 and place them in a Yum repo which is accessible by your system.
+
+This module does not currently have the ability to serve up RPM packages
+from Puppet's fileserver. This could be added if necessary.
 
 ## Usage
 
@@ -125,15 +129,15 @@ class { oracleinstantclient::sqlnet:
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+This module is developed and tested on CentOS 6 and 7. Oracle's packages
+are in RPM format so it would not be easy to extend to other platforms.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Pull requests welcome. No guarantee of development effort if the features
+are not useful to my employer.
 
-## Release Notes/Contributors/Etc **Optional**
+## Release Notes
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+### `0.1.0`
+* Initial release
