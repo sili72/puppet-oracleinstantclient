@@ -136,8 +136,3 @@ are in RPM format so it would not be easy to extend to other platforms.
 
 Pull requests welcome. No guarantee of development effort if the features
 are not useful to my employer.
-
-## Release Notes
-
-### `0.1.0`
-* Initial release
