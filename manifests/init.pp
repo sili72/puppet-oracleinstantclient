@@ -135,8 +135,8 @@ class oracleinstantclient (
   # SELinux config
   if ($selinux == true and $::osfamily == 'RedHat') {
     selinux::module { 'oracle':
-      ensure => 'present',
-      source => 'puppet:///modules/oracleinstantclient/oracle.te',
+      ensure    => 'present',
+      source_te => 'puppet:///modules/oracleinstantclient/oracle.te',
     }
   }
 }
